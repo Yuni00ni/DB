@@ -146,3 +146,22 @@ select employee_id as 직원아이디, first_name as 이름, salary as 급여, c
 -- 직원테이블에서 직원의 이름과 급여 정보 출력.
 select first_name, salary from employees order by salary;
 
+-- 실습) 직원의 모든 정보를 조회하는데 최근에 입사한 순으로 정렬하여 출력
+select * from employees order by hire_date desc;
+
+-- null 값이란
+-- 존재하지 않거나 정해지지 않은 것을 의미한다.
+-- 데이터의 값이 완전히 비어 있는 상태를 말한다.
+-- null, '', ""
+--> 0, " "(공백)은 null 값이 아니다 > 데이터가 존재한다.
+
+-- null값의 특징
+--> 1. null은 산술 연산이 적용되지 않는다. --> 무조건 null값이 나온다.
+--> 2. null은 비교연산(=, >, >=, <, <=)이 적용되지 않는다. --> 무조건 false값이 반환된다.
+
+-- user is "" << null
+-- user is " " << 공백이라는 특수문자를 가진 유저로 접속된 상태
+
+select first_name, salary, commission_pct, commission_pct * 2 from employees;
+
+desc employees;
