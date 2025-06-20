@@ -39,3 +39,12 @@ SELECT
     salary
 FROM
     employees;
+    
+-- 부서테이블에서 부서ID, 부서이름의 컬럼의 정보를 가져오시오.
+select department_id, department_name from departments;
+
+-- 직원테이블에서 직원ID, 직원이름, 급여(salary), 직책ID, 부서ID 정보를 가져오시오.
+select employee_id, first_name, last_name, salary, job_id, department_id from employees;
+
+-- 직책테이블(jobs)에서 직책id, 직책내용의 컬럼의 정보를 가져오시오.
+select job_id, job_title from jobs;
