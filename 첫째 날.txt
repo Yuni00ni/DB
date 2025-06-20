@@ -1,0 +1,6 @@
+[ run sql command line ]
+show user;
+--> 나의 현 계정 상태를 확인하는 명령어
+
+
+connect(conn) 
