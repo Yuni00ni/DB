@@ -34,17 +34,99 @@ FROM
 -- SQL 정석 작성방식
 SELECT
     first_name,
-    last_name,
+    NULL last_name,
     phone_number,
     salary
 FROM
     employees;
     
 -- 부서테이블에서 부서ID, 부서이름의 컬럼의 정보를 가져오시오.
-select department_id, department_name from departments;
+SELECT
+    department_id,
+    department_name
+FROM
+    departments;
 
 -- 직원테이블에서 직원ID, 직원이름, 급여(salary), 직책ID, 부서ID 정보를 가져오시오.
-select employee_id, first_name, last_name, salary, job_id, department_id from employees;
+SELECT
+    employee_id,
+    first_name,
+    last_name,
+    salary,
+    job_id,
+    department_id
+FROM
+    employees;
 
 -- 직책테이블(jobs)에서 직책id, 직책내용의 컬럼의 정보를 가져오시오.
-select job_id, job_title from jobs;
+SELECT
+    job_id,
+    job_title
+FROM
+    jobs;
+
+-- distinct : 중복 제거하는 옵션이다. (select 절에 한 번만 사용이 가능하다.)
+SELECT DISTINCT
+    department_id
+FROM
+    employees;
+
+SELECT DISTINCT
+    job_id
+FROM
+    employees;
+
+-- 전체 조회하기 : *(애스타리스크)
+-- select절에 * 를 사용하게 되면 전체 컬럼을 선택하는 애스타리스크라는 특수 문자로 적용된다.
+
+SELECT
+    *
+FROM
+    employees;
+
+-- 부서테이블의 전체 정보 확인
+SELECT
+    *
+FROM
+    departments;
+-- 직책테이블의 전체 정보 확인
+SELECT
+    *
+FROM
+    employees;
+-- 위치테이블의 전체 정보 확인
+SELECT
+    *
+FROM
+    locations;
+-- 나라테이블의 전체 정보 확인
+SELECT
+    *
+FROM
+    regions;
+
+-- 컬럼의 산술연산 적용해보기
+-- 컬럼의 유형이 숫자형/날짜형이면 산술 연산이 적용된다.
+
+desc employees;
+
+-- 직원테이블에서 직원ID, 이름, 급여 정보를 확인해보자.
+SELECT
+    employee_id,
+    first_name,
+    salary,
+    salary * 12 as "연 봉",
+    hire_date
+FROM
+    employees;
+    
+-- 별칭을 사용하기
+-- Alias(별칭)은 주로 AS 라는 키워드로 컬럼명에 별칭을 사용한다.
+-- 별칭을 사용 시 특수문자까지 별칭에 적용시키기 위해서는 ""감싸줘야 한다.
+
+-- [ 별칭 사용 방법 ]
+-- 1. select 특정컬럼 as 별칭
+-- 2. select 특정컬럼 as "별칭"
+-- 3. select 특정컬럼 별칭
+-- 4. select 특정컬럼 "별칭"
+
