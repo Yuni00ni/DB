@@ -130,3 +130,19 @@ FROM
 -- 3. select 특정컬럼 별칭
 -- 4. select 특정컬럼 "별칭"
 
+-- 실습문제) 직원테이블에서 직원ID, 이름(first_name), 급여, 보너스정보(commission_pct), 연락처의 정보를 출력
+-- 별칭을 사용하여 직원아이디, 이름, 보너스, 연락처라는 별칭으로 출력
+select employee_id as 직원아이디, first_name as 이름, salary as 급여, commission_pct as 보너스, phone_number as 연락처 from employees;
+
+
+-- order by 절 사용
+-- select   조회하고자 하는 "컬럼의 정보"
+-- from     데이터를 가져올 "테이블의 정보"
+-- order by 특정 컬럼을 기준으로 "정렬화"
+
+-- asc : 오름차순 정렬 (1,2,3,4,5....) -> 컬럼만 입력 시 기본값.
+-- desc : 내림차순 정렬 (10,9,8,7,6.........)
+
+-- 직원테이블에서 직원의 이름과 급여 정보 출력.
+select first_name, salary from employees order by salary;
+
