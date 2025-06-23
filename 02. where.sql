@@ -55,5 +55,14 @@ select * from employees where job_id = 'IT_PROG';
 -- <= : 보다 작거나 같다(이하)
 
 -- 직원테이블에서 급여가 5000 이하인 직원의 직원id, 이름(first_name), 이메일, 급여(salary)를 가져오시오.
-select employee_id, first_name, email, salary from employees where salary <= 5000;
+select employee_id, first_name, email, salary from employees where salary <= 5000 order by salary desc;
+
+-- 문제1) 직원테이블에서 연봉이 120000이상인 직원의 직원id, 이름, 부서id, 직책id, 급여, 연봉 정보를 조회하시오. 단 연봉은 s_001 이라는 별칭을 적용하고 직원id기준으로 내림차순 정렬하여 조회하시오.
+select employee_id, first_name, department_id, salary, salary * 12 as "s_001" from employees where salary * 12 >= 120000 order by employee_id desc;
+ 
+ -- 문제2) 직원테이블에서 최근에 입사한 날짜를 기준으로 모든 직원의 정보를 조회하시오. 단 입사날짜는 "입사날짜" 라는 별칭을 적용하여 출력하시오.
+select employee_id, first_name, last_name, email, phone_number, job_id, salary, commission_pct, manager_id, department_id, hire_date as "입사날짜" from employees order by hire_date desc;
+
+-- 문제3) 입사날짜가 06년06월01일 이후에 입사한 직원들의 모든 정보를 조회하시오.
+select hire_date from employees where hire_date > '06/06/01' order by hire_date desc;
 
