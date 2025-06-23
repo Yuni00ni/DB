@@ -64,5 +64,15 @@ select employee_id, first_name, department_id, salary, salary * 12 as "s_001" fr
 select employee_id, first_name, last_name, email, phone_number, job_id, salary, commission_pct, manager_id, department_id, hire_date as "입사날짜" from employees order by hire_date desc;
 
 -- 문제3) 입사날짜가 06년06월01일 이후에 입사한 직원들의 모든 정보를 조회하시오.
-select hire_date from employees where hire_date > '06/06/01' order by hire_date desc;
+select * from employees where hire_date > '06/06/01' order by hire_date asc;
+
+-- 부정 비교 연산자
+-- !=, <>, ^= : 같지 않다.
+-- not a = b : 같지 않다.
+
+-- 문제) 부서가 50에 해당하지 않는 직원의 이름과, 부서정보를 조회하시오.
+select first_name, department_id from employees where department_id != 50 order by department_id desc;
+
+-- 문제2) 직책이 it_prog에 해당하지 않는 직원의 직원id, 이름, 직책id, 급여 정보를 조회하시오.
+select employee_id, first_name, job_id, salary from employees where job_id != 'IT_PROG' order by employee_id asc;
 
