@@ -88,5 +88,15 @@ select employee_id, first_name, job_id, salary from employees where job_id != 'I
 -- 직원 테이블의 모든 정보를 가져온것(출력한것)
 select * from employees;
 
-select salary, department_id from employees where department_id = 30 or department_id = 40 or department_id = 50 order by department_id desc;
+select first_name, salary, department_id from employees where department_id = 30 or department_id = 40 or department_id = 50 order by department_id desc;
+
+-- 문제1) 부서가 50이면서 직책이 st_man인 직원의 모든 정보를 조회하시오.
+select * from employees where department_id = 50 and job_id = 'ST_MAN';
+
+-- 문제2) 부서가 100이고 급여가 7000 미만인 직원의 직원id, 이름, 부서정보, 급여정보를 조회하시오.
+select employee_id, first_name, department_id, salary from employees where department_id = 100 and salary > 7000;
+
+-- 문제3) 직책이 st_man이고 급여가 7000미만인 직원의 이름, 직책, 급여 정보를 조회하시오.
+select first_name, job_id, salary from employees where job_id = 'ST_MAN' and salary > 7000;
+
 
