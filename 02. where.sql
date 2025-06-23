@@ -93,10 +93,14 @@ select first_name, salary, department_id from employees where department_id = 30
 -- 문제1) 부서가 50이면서 직책이 st_man인 직원의 모든 정보를 조회하시오.
 select * from employees where department_id = 50 and job_id = 'ST_MAN';
 
--- 문제2) 부서가 100이고 급여가 7000 미만인 직원의 직원id, 이름, 부서정보, 급여정보를 조회하시오.
-select employee_id, first_name, department_id, salary from employees where department_id = 100 and salary > 7000;
+-- 문제2) 부서가 100이거나 급여가 7000 미만인 직원의 직원id, 이름, 부서정보, 급여정보를 조회하시오.
+select employee_id, first_name, department_id, salary from employees where department_id = 100 or salary < 7000;
 
 -- 문제3) 직책이 st_man이고 급여가 7000미만인 직원의 이름, 직책, 급여 정보를 조회하시오.
-select first_name, job_id, salary from employees where job_id = 'ST_MAN' and salary > 7000;
+select first_name, job_id, salary from employees where job_id = 'ST_MAN' and salary < 7000;
 
+-- 문제4) 부서가 50이거나 90에 소속된 직원 중에서 급여가 7000이상을 받고 일하고 있는 직원의 이름, 부서id, 급여 정보를 조회하시오.
+select first_name, department_id, salary from employees where department_id = 50 or department_id = 90 and salary > 7000;
 
+-- 문제5) 부서가 100이거나 90인 직원 중에 직원id가 101인 직원의 직원id, 이름, 급여, 연봉 정보를 조회하시오.
+select department_id, employee_id, first_name, salary, salary * 12 as "연봉" from employees where (department_id = 100 or department_id = 90) and employee_id = 101;
