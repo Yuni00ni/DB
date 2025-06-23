@@ -34,3 +34,26 @@ select * from employees where manager_id = 100;
 
 -- date : 날짜형 자료형, sysdate(날짜형)함수를 사용하여 현재 날짜 값을 입력 받는다.
 -- timestamp라는 구체적인 시간을 지정하는 자료형도 있다(ms까지 지정 가능)
+
+-- 데이터 유형에 따른 사용하는 방법
+
+-- 문자형, 날짜형 -> 반드시 ''(작은따옴표)로 감싸줘야 한다.
+-- ㄴ> ""(쌍따옴표)는 문자로 인식하지 못한다. 다만 별칭을 사용할 때 특수문자를 인식하기 위해 사용한다.
+
+-- 숫자형 -> 그냥 숫자로 쓰면 된다.
+
+select * from employees;
+
+-- job_id(직책) 정보가 it_prog에 해당하는 직원의 수는 몇 명인가? >> 5명
+select * from employees where job_id = 'IT_PROG';
+
+-- 비교연산자
+-- = : 같다.
+-- > : 보다 크다(초과)
+-- >= : 보다 크거나 같다(이상)
+-- < : 보다 작다(미만)
+-- <= : 보다 작거나 같다(이하)
+
+-- 직원테이블에서 급여가 5000 이하인 직원의 직원id, 이름(first_name), 이메일, 급여(salary)를 가져오시오.
+select employee_id, first_name, email, salary from employees where salary <= 5000;
+
