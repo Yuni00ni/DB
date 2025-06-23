@@ -70,9 +70,23 @@ select * from employees where hire_date > '06/06/01' order by hire_date asc;
 -- !=, <>, ^= : 같지 않다.
 -- not a = b : 같지 않다.
 
--- 문제) 부서가 50에 해당하지 않는 직원의 이름과, 부서정보를 조회하시오.
+-- 문제) 부서가 50에 해당하지 않는 직원의 이름과, 부서정보를 조회하시오. 
 select first_name, department_id from employees where department_id != 50 order by department_id desc;
 
 -- 문제2) 직책이 it_prog에 해당하지 않는 직원의 직원id, 이름, 직책id, 급여 정보를 조회하시오.
 select employee_id, first_name, job_id, salary from employees where job_id != 'IT_PROG' order by employee_id asc;
+
+-- 논리 연산자 : 조건과 조건을 이어주는 역할을 하는 연산자
+-- and : 조건 모두 만족해야만 true값을 반환
+-- or : 하나의 조건이라도 만족하면 true값을 반환
+
+-- 연산자의 우선 순위(실행 순서)
+-- and > or : and연산자가 or 연산자보다 우선순위가 높기 때문에 and연산자가 먼저 실행이 된다.
+
+-- 문제) 부서가 30, 40, 50에 해당하는 직원들의 이름과 급여와 부서정보를 조회하시오. 부서를 기준으로 내림차순 정렬하여 조회하시오.
+
+-- 직원 테이블의 모든 정보를 가져온것(출력한것)
+select * from employees;
+
+select salary, department_id from employees where department_id = 30 or department_id = 40 or department_id = 50 order by department_id desc;
 
