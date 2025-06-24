@@ -158,3 +158,18 @@ select first_name, last_name, employee_id, manager_id from employees where manag
 
 -- 문제4) 부서가 10, 20, 30, 40에 해당하지 않는 부서명, 부서id, 위치id를 조회하시오.
 select department_name, department_id, location_id from departments where department_id not in (10, 20, 30, 40);
+
+-- between 연산자
+-- 일정 범위 내의 데이터를 조회할 때 사용한다.
+
+-- between a(최소값) and b(최대값)
+-- a이상(<=) b이하(<=)에 해당하는 범위의 값을 가져오는 것
+
+-- 급여가 10000 이상 20000 이하의 범위안에 있는 직원의 이름과 급여 정보를 조회하시오.
+select first_name, salary from employees where salary >= 10000 and salary <= 20000 order by salary;
+
+-- between 적용하여 SQL 작성
+select first_name, salary from employees where salary between 10000 and 20000 order by salary;
+
+-- like 연산자
+
