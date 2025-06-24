@@ -105,3 +105,4 @@ select first_name, department_id, salary from employees where department_id = 50
 -- 문제5) 부서가 100이거나 90인 직원 중에 직원id가 101인 직원의 직원id, 이름, 급여, 연봉 정보를 조회하시오.
 select department_id, employee_id, first_name, salary, salary * 12 as "연봉" from employees where (department_id = 100 or department_id = 90) and employee_id = 101;
 -- and가 연산 순서가 or 보다 높은건 연산이 먼저 처리되는 것. 조건의 우선순위가 높은 것이 아님. 혼동하지 말 것.
+
