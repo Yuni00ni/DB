@@ -172,4 +172,25 @@ select first_name, salary from employees where salary >= 10000 and salary <= 200
 select first_name, salary from employees where salary between 10000 and 20000 order by salary;
 
 -- like 연산자
+-- 일부 문자열이 포함된 데이터를 조회하고자 할 때 사용하는 연산자.
+-- 와일드카드(특수문자)를 이용해서 매칭 연산을 진행합니다.
+
+-- [ 와일드 카드의 종류 ]
+-- % : 길이와 상관 없이 모든 데이터를 의미하는 특수문자
+-- _ : 어떤 값이든 상관 없이 한 개의 문자 데이터를 의미하는 특수문자
+
+-- 직원테이블에서 직원의 직원id와 이름과 핸드폰번호를 조회하시오.
+select employee_id, first_name, phone_number from employees;
+
+-- 핸드폰 번호가 650으로 시작하는 직원의 이름과 핸드폰번호 출력
+select first_name, phone_number from employees where phone_number like '650%';
+
+-- fitst_name이 S로 시작하고 n으로 끝나는 직원의 first_name의 정보를 가져오기
+select first_name from employees where first_name like 'S%n';
+
+-- first_name이 it로 끝나고 총 4글자인 직원의 first_name의 정보를 가져오기
+select first_name from employees where first_name like '__it';
+
+-- first_name의 두번째 글자가 e인 직원의 first_name의 정보를 가져오기
+select first_name from employees where first_name like '_e%';
 
