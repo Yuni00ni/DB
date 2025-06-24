@@ -62,8 +62,28 @@ select mod(10, 3) as "10 % 3", mod(12, 5) as "12 % 5", mod(15, 6) as "15 % 6" fr
 -- [ 날짜형 함수 ]
 -- sysdate : 현재 날짜와 시간을 출력해주는 함수
 --> 입력 시 바로 출력되며, 현재 시간을 초 단위까지 출력 가능
-
-select sysdate from dual;
+-- 날짜형 데이터는 연산 가능
+-- 날짜형 데이터끼리는 연산 불가능
 
 -- 날짜 형식 세팅하기
 -- 도구 > 환경설정 > 데이터베이스 > nls > 날짜형식 > yyyy-mm-dd hh24:mi:ss
+
+-- sysdate + sysdate --> 날짜 데이터끼리는 연산이 불가능하다
+select sysdate, sysdate +1 as "내일", sysdate -1 as "어제" from dual;
+
+-- 날짜 데이터 활용(실무)
+select sysdate as "현재 날짜", sysdate + 1 as "하루를 더함", sysdate +1/24 as "한 시간 더함", sysdate +1/24/60 as "일 분을 더함", sysdate +1/24/60/60 as "일 초를 더함" from dual;
+
+-- add_months() : 몇 개월 이후 날짜를 구하는 함수
+-- add_months(날짜 데이터, 더하거나 뺄 개월 수)
+
+-- 현재 날짜에서 3달 후 데이터를 출력
+select add_months(sysdate, +3) as "3달 후" from dual;
+
+-- [ 변환형 함수 ]
+
+-- [ 형변환 형태의 종류 ]
+-- 암시적 형변환 : 데이터베이스가 자동으로 형변환을 해주는 것
+select '100' + 700 from dual;
+
+-- 명시적 형변환 : 데이터 변환형 함수를 사용해서 사용자가 직접 자료형을 지정해주는 것
