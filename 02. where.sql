@@ -106,3 +106,55 @@ select first_name, department_id, salary from employees where department_id = 50
 select department_id, employee_id, first_name, salary, salary * 12 as "연봉" from employees where (department_id = 100 or department_id = 90) and employee_id = 101;
 -- and가 연산 순서가 or 보다 높은건 연산이 먼저 처리되는 것. 조건의 우선순위가 높은 것이 아님. 혼동하지 말 것.
 
+-- SQL 연산자
+-- SQL에서만 사용할 수 있는 연산자다
+-- is null, in, between, like
+
+-- is null 연산자
+-- 데이터 값이 null인 값을 조회하여 가져온다.
+
+-- is null : 데이터 값이 null인 값을 조회하는 연산자
+-- is not null : 데이터 값이 null이 아닌 값을 조회하는 연산자
+
+-- 직원테이블에서 직원의 이름, 급여, 보너스 정보를 조회한 것
+select first_name, salary, commission_pct from employees;
+
+-- 보너스를 받고 있지 않는 직원의 수는 몇 명인가? = 72명 % 35
+-- 출력 결과를 통해서 알아보자.
+select first_name, salary, commission_pct from employees where commission_pct is not null;
+
+-- 직원테이블에서 부서id를 조회하시오.
+select department_id from employees;
+
+-- 부서가 존재하지 않는 직원의 이름은 누구인가?
+--> Kimberely Grant
+select first_name, last_name, department_id from employees where department_id is null;
+
+-- 부서장이 존재하는 부서의 모든 정보를 조회하시오.
+select * from departments where manager_id is not null;
+
+-- in 연산자
+-- 특정 컬럼에 포함된 데이터를 여러 개 조회할 때 사용한다.
+-- = + or 의 결과값이다.
+-- in 연산자는 null값을 제외하는 특성을 가지고 있다.
+
+-- 부서가 10, 20, 30, 40에 해당하는 직원의 이름과 부서 정보를 조회하시오.
+select * from employees;
+
+select first_name, department_id from employees where department_id = 10 or department_id = 20 or department_id = 30 or department_id = 40;
+
+-- in 연산자 사용법
+select first_name, department_id from employees where department_id in (10, 20, 30, 40) or department_id is null;
+
+-- in 연산자 활용
+-- 문제1) 직원테이블에서 직책이 ad_pres 이거나 it_prog인 직원의 이름과 직책 정보를 조회하시오.
+select first_name, last_name, job_id from employees where job_id in ('AD_PRES', 'IT_PROG');
+
+-- 문제2) 이메일이 sande, tfox, dlee인 직원의 이름과 이메일, 핸드폰번호 정보를 조회하시오.
+select first_name, last_name, email, phone_number from employees where email in ('SANDE', 'TFOX', 'DLEE');
+
+-- 문제3) 매니저 아이디가 100, 102, 103, 104, 105에 해당하지 않는 직원의 이름과 직원id, 매니저id를 조회하시오.
+select first_name, last_name, employee_id, manager_id from employees where manager_id not in (100, 102, 103, 104);
+
+-- 문제4) 부서가 10, 20, 30, 40에 해당하지 않는 부서명, 부서id, 위치id를 조회하시오.
+select department_name, department_id, location_id from departments where department_id not in (10, 20, 30, 40);
