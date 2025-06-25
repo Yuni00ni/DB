@@ -90,9 +90,11 @@ select 소속반, count(*) as "반별 인원수" from 수강생정보 group by �
 select 과목, max(성적) as "최고 성적", min(성적) as "최저 성적" from 성적표 group by 과목;
 
 -- 직원테이블에서 부서별 직원의 급여 총 합계를 구하시오.
-select department_id, sum(salary) as "sum" from employees group by department_id;
+select department_id, sum(salary) as "sum" from employees group by department_id order by department_id;
 
 -- 직원데이블에서 직업별 직원의 평균 급여를 구하시오.
-select job_id, round(avg(salary), 1) as "avg" from employees where department_id is not null group by job_id;
+select job_id, round(avg(salary), 1) as "avg" from employees where department_id is not null group by job_id order by round(avg(salary), 1);
 
-
+-- 성적표 테이블에서 학생별 과목의 성적합을 구하시오.
+-- 단, 'PYTHON' 과목을 제외 시키고 'SMHRD6'인 학생도 제외시켜라.
+select 학생ID, sum(성적) from 성적표 where 과목 != 'PYTHON' and 학생ID != 'SMHRD6' group by 학생ID order by 학생ID;
