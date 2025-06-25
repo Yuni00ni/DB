@@ -87,3 +87,64 @@ select add_months(sysdate, +3) as "3달 후" from dual;
 select '100' + 700 from dual;
 
 -- 명시적 형변환 : 데이터 변환형 함수를 사용해서 사용자가 직접 자료형을 지정해주는 것
+select to_number('1,000', 9999) + 700 from dual;
+
+-- to_number() : 문자데이터를 숫자 데이터로 변환하는 함수
+-- to_number(문자열 데이터, 인식 될 숫자 형태)
+
+-- 자료형 변환 시 표현 형식
+-- 9 : 숫자의 자릿수를 의미
+-- 0 : 빈자리를 0으로 채움
+-- $ : 달러($) 표시를 붙혀서 출력함
+-- L : 지역 화폐 단위 기호를 붙혀서 출력함
+-- . : 소수점을 표시
+-- , : 1,000 << 처럼 단위를 표시하여 출력함
+
+-- to_char() : 날짜, 숫자 데이터를 문자 데이터로 변환해주는 함수
+-- to_char(변환할 데이터, 출력 형태)
+
+-- 직원테이블에서 직원의 이름과 급여정보를 출력하시오.
+select first_name, salary, to_char(salary, 'L999,999') from employees;
+
+-- to_date() : 문자 데이터를 날짜 데이터로 변환하는 함수
+-- to_date(문자열 데이터, 인식 될 날짜 형태)
+
+-- 날짜 표현 형식
+-- YYYY/RRRR : 년도를 4자리로 표현
+-- YY/RR : 년도를 2자리로 표현
+-- MM : 개월을 2자리로 표현
+-- MON : 개월 표현
+-- MONTH : 개월 이름을 전체로 표현
+-- DD : 요일을 2자리로 표현
+-- DAY : 요일을 전체로 표현
+
+select to_date('20250625수요일','YYYY/MM/DD/DAY') from dual;
+
+-- null 처리 함수
+-- nvl() / nvl2() : null값을 대체할 수 있는 함수
+-- nvl(null 여부 검사 데이터, null일 경우 반환 데이터)
+-- nvl2(null 여부 검사 데이터, !null일 경우 반환 데이터, null일 경우 반환 데이터)
+
+select first_name, salary, nvl(commission_pct, 0), nvl2(commission_pct, 1, 0) from employees;
+
+-- 문제) 직원테이블에서 직원id, 이름, 급여, 매니저id를 출력
+-- 매니저가 있는 직원은 '직원'으로 출력
+-- 매니저가 없는 직원은 '대표'로 출력
+
+select employee_id, first_name, salary, manager_id, nvl2(manager_id, '직원', '대표') as "직책" from employees;
+
+-- 조건 함수
+-- decode() : 상황에 따라 다른 데이터를 반환하는 함수
+--> 검사대상과 비교해서 지정한 값을 반환
+
+-- decode(검사 대상(컬럼 | 데이터), 비교값, 일치 시 반환값, 불일치 시 반환값)
+
+-- 문제) 직원테이블에서 직원id, 이름, 급여, 매니저id를 출력
+-- 매니저가 있는 직원은 '직원'으로 출력
+-- 매니저가 없는 직원은 '대표'로 출력
+
+-- employee_id가 100인 사람은 대표, 101인 직원은 전무, 102인 직원은 상무, 103인 직원은 팀장 나머지는 직원으로 출력하시오.
+
+select employee_id, first_name, salary, manager_id, decode(manager_id, null, '대표', '직원') as "직책",
+       decode(employee_id, 100, '대표', 101, '전무', 102, '상무', 103, '팀장', '직원') as "직책2" from employees;
+       
