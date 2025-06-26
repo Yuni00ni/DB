@@ -49,6 +49,15 @@ select e.employee_id, e.first_name, e.department_id, d.department_name from empl
 -- 조인할 테이블의 정보 : 수강생정보, 성적표
 select 성.학생ID, 수.학생이름, 성.과목, 성.성적 from 수강생정보 수, 성적표 성 where 수.학생ID = 성.학생ID;
 
--- 문제2) 직원테이블에서 직원id, 이름, 직책id 직책title 조회
+-- 문제2) 직원테이블에서 직원id, 이름, 직책id 직책title 의 컬럼의 정보 순으로 출력
+-- 조인할 테이블의 정보 : employees, jobs
+-- 직원id 기준으로 오름차순(asc) 정렬하여 출력
 select e.employee_id, e.first_name, e.job_id, j.job_title from employees e, jobs j where e.job_id = j.job_id order by employee_id;
+
+-- 단독으로 존재하는 테이블이면 경로(.)를 안적어줘도 db가 찾아준다.
+-- 하지만 코드의 가독성을 위해서 테이블의 경로를 적어주는 것이 좋다.
+select department_id, department_name, manager_id, location_id from departments;
+
+-- 문제3) 부서id, 부서명, 위치id, 도로명주소, 도시 출력
+select d.department_id, d.department_name, d.location_id, l.street_address, l.city from departments d, locations l where d.location_id = l.location_id;
 
