@@ -98,3 +98,43 @@ select job_id, round(avg(salary), 1) as "avg" from employees where department_id
 -- 성적표 테이블에서 학생별 과목의 성적합을 구하시오.
 -- 단, 'PYTHON' 과목을 제외 시키고 'SMHRD6'인 학생도 제외시켜라.
 select 학생ID, sum(성적) from 성적표 where 과목 != 'PYTHON' and 학생ID != 'SMHRD6' group by 학생ID order by 학생ID;
+
+-- 부서별 평균 급여를 구하시오.
+-- 단 부서가 50, 80, 100에 해당하는 부서만 조회하시오.
+-- 평균 급여는 "평균 급여"라는 별칭으로 출력하고, 소수점 1의자리까지 표시하시오.
+select department_id, round(avg(salary), 1) as "평균 급여" from employees where department_id = 50 or department_id = 80 or department_id = 100 group by department_id order by department_id;
+
+-- having절
+-- group by 이후에 실행되는 조건절
+-- 집계가 완료된 대상을 조건을 통해 필터링하는 문법이며 집계함수에 대한 조건을 걸 때 사용
+
+-- [ sql 작성순서 및 실행순서 ]
+
+-- 5. select : 조회하고자 하는 "컬럼의 정보"
+-- 1. from : 데이터를 가져올 "테이블의 정보"
+-- 2. where : 원하는 행(데이터)를 선별하기 위한 "조건식"
+-- 3. group by : 특정 컬럼을 기준으로 "그룹화"
+-- 4. having : 그룹화 된 상태에서 집계함수에 대한 "조건식"
+-- 6. order by : 특정 컬럼을 기준으로 "정렬화"
+
+-- where절과 having절의 차이점
+-- 조건이 참인 결과만 출력된다는 점에서는 비슷하나,
+-- where절은 group by 이전에 실행되는 조건절이라서
+-- group by 이후에 사용할 수 있는 집계함수에 대한 조건을 걸 수 없음
+-- 집계함수에 대한 조건을 선별하려면 group by 이후에 실행되는 having 조건절을 사용해야함
+
+-- 수강생정보 테이블에서 반별 인원수가 3명 이상인 반만 집계출력하시오
+select 소속반, count(학생ID) as "인원수" from 수강생정보 group by 소속반 having count(학생ID) >= 3;
+
+-- 문제1) 직원테이블에서 부서별 최고 연봉이 100000이상인 부서만 조회하시오.
+select department_id, max(salary * 12) from employees group by department_id having max(salary * 12) >= 100000;
+
+-- 문제2) 직원테이블에서 직업별 평균 급여가 10000이상인 직업만 조회하시오.
+-- 단 사장의 직업은 제외하시오.
+select job_id, round(avg(salary)) from employees where job_id != 'AD_PRES' group by job_id having round(avg(salary)) >= 10000;
+select job_id from employees;
+
+-- 문제3) 부서별 급여의 총 합계를 구하시오.
+-- 단 급여 총 합계가 10000 이하인 부서만 출력하시오.
+-- 부서가 null인 부서는 제외하시오.
+select department_id, sum(salary) from employees where department_id is not null group by department_id having sum(salary) <= 10000;
