@@ -126,6 +126,10 @@ select department_id, round(avg(salary), 1) as "평균 급여" from employees wh
 -- 수강생정보 테이블에서 반별 인원수가 3명 이상인 반만 집계출력하시오
 select 소속반, count(학생ID) as "인원수" from 수강생정보 group by 소속반 having count(학생ID) >= 3;
 
+-- 직원테이블에서 직원이름, 직업, 매니저id를 조회하시오.
+-- 단 매니저id가 null인 값만 조회하시오.
+select first_name, job_id, manager_id from employees where manager_id is null;
+
 -- 문제1) 직원테이블에서 부서별 최고 연봉이 100000이상인 부서만 조회하시오.
 select department_id, max(salary * 12) from employees group by department_id having max(salary * 12) >= 100000;
 
