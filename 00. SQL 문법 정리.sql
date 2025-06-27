@@ -51,3 +51,84 @@ CREATE TABLE 성적표 (
 
 select * from 성적표;
 
+-- 제약조건(constraint)이란?
+-- 테이블에 입력 가능한 데이터를 조건으로 제약하는 것
+--> 데이터의 정확성을 유지하기 위한 목적으로 사용
+--> 제약 조건 지정 방식에 따라서 수정이나 삭제 여부에 영향을 받음
+
+-- 제약조건의 종류
+-- primary key(pk) : 기본키, not null + unique --> null값 불가 + 중복 불가
+-- unique key(uk) : 고유키, null값 입력 가능, 단 중복은 불가
+-- not null : null값 불가능, 반드시 입력되어야 하는 데이터이다 할 때 설정하는 것
+-- check : true of false로 평가할 수 있는 논리식 지정, 지정한 데이터만 입력 가능
+-- foreign key(fk) : 외래키, 테이블을 연결하는 키
+
+-- DML(Data Manipulation Language) : 데이터 조작어
+-- manipulate : 조작
+
+-- DML이란 데이터 조작어로 데이터를 추가, 수정, 삭제, 조회 할 때 사용하는 질의어
+--> 테이블에서 원하는 데이터를 입력, 수정, 삭제하는 언어
+
+-- [ DML의 유형 ] -- 세인업데
+-- select : 데이터 조회
+-- insert : 데이터 추가
+-- update : 데이터 수정
+-- delete : 데이터 삭제
+
+select * from 수강생정보;
+
+-- 수강생정보 테이블에 데이터를 추가하는 쿼리문 -- insert(추가)
+-- insert(데이터 추가)할 때 유의해야할 점
+-- insert into 에 작성한 컬럼과 values에 입력한 실제 값은 1:1 매핑이 되어진다.
+-- 그렇기 때문에 순서와 자료형을 맞게 작성을 해야한다.
+INSERT INTO 수강생정보(학생ID, 학생이름, 소속반) VALUES ('SMHRD1' , '조준용' , 'A') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD2' , '박수현' , 'A') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD3' , '박병관' , 'B') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD4' , '이명훈' , 'B') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD5' , '나예호' , 'B') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD6' , '선영표' , 'C') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD7' , '최영화' , 'C') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD8' , '송찬호' , 'C') ; 
+INSERT INTO 수강생정보 VALUES ('SMHRD9' , '임승환' , 'C') ; 
+
+-- 성적표 테이블에 데이터를 추가하는 쿼리문
+INSERT INTO 성적표(학생ID, 과목, 성적) VALUES('SMHRD1'  ,'JAVA' , 90); 
+INSERT INTO 성적표 VALUES('SMHRD1'  ,'DATABASE' , 85); 
+INSERT INTO 성적표 VALUES('SMHRD1'  ,'PYTHON' , 100); 
+INSERT INTO 성적표 VALUES('SMHRD2'  ,'JAVA' , 100); 
+INSERT INTO 성적표 VALUES('SMHRD2'  ,'DATABASE' , 100); 
+INSERT INTO 성적표 VALUES('SMHRD2'  ,'PYTHON' , 20); 
+INSERT INTO 성적표 VALUES('SMHRD3'  ,'JAVA' , 100); 
+INSERT INTO 성적표 VALUES('SMHRD3'  ,'DATABASE' , 100); 
+INSERT INTO 성적표 VALUES('SMHRD3'  ,'PYTHON' , 20); 
+INSERT INTO 성적표 VALUES('SMHRD4'  ,'JAVA' , 85); 
+INSERT INTO 성적표 VALUES('SMHRD4'  ,'DATABASE' , 40); 
+INSERT INTO 성적표 VALUES('SMHRD4'  ,'PYTHON' , 60); 
+INSERT INTO 성적표 VALUES('SMHRD5'  ,'JAVA' , 100); 
+INSERT INTO 성적표 VALUES('SMHRD5'  ,'DATABASE' , 100); 
+INSERT INTO 성적표 VALUES('SMHRD5'  ,'PYTHON' , 100); 
+
+select * from 성적표;
+select * from 수강생정보;
+
+-- 데이터에 null값을 입력하는 방법 3가지
+-- 1. 데이터에 null을 추가하는 방법(1)
+INSERT INTO 성적표(학생ID, 과목, 성적) VALUES ( 'SMHRD6' , 'JAVA' , NULL ) ; 
+
+-- 2. 데이터에 null을 추가하는 방법(2)
+INSERT INTO 성적표 VALUES ( 'SMHRD6' , 'DATABASE' , '' ) ; 
+
+-- 3. 데이터에 null을 추가하는 방법(3)
+INSERT INTO 성적표(학생id, 과목) VALUES ( 'SMHRD6' , 'PYTHON') ; 
+
+-- update : 테이블의 데이터를 변경하고 싶을 때 사용
+-- 사용방법
+-- update [테이블명]
+-- set [변경할 데이터 내용]
+-- where [데이터를 변경할 대상 행을 선별하기 위한 조건식]
+
+select * from 성적표;
+
+-- SMHRD6인 학생의 JAVA과목의 성적을 50점으로 수정하시오.(update)
+update 성적표 set 성적 = 50 where 과목 = 'JAVA';
+
