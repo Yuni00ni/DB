@@ -201,3 +201,11 @@ commit;
 -- grant connect, resource to [사용자 계정];
 
 -- 실습) connect, resource권한을 주고 테이블을 하나 생성하라
+
+create table emp (
+    empno number primary key,
+    ename varchar(20) not null,
+    job_id varchar2(10),
+    sal number,
+    deptno number
+);
