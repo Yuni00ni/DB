@@ -182,3 +182,22 @@ commit;
 -- identified by [비밀번호 설정]
 
 -- system(최고관리자 계정)에 접속된 상태에서 계정을 만든다!
+
+-- [ 시스템 권한 부여 방법 ]
+-- grant [시스템 권한]
+-- to [사용자 계정]
+
+-- [ 시스템 권한 회수 방법 ]
+-- revoke [시스템 권한]
+-- from [사용자 계정]
+
+-- role : 권한을 묶어서 주는 방법
+
+-- [ role의 종류 ]
+-- connect : 접속에 필요한 권한을 묶어놓은 것
+-- resource : 객체 생성을 할 수 있는 권한을 묶어놓은 것
+-- dba : 데이터베이스의 보스(admin). 모든 권한을 묶어놓은 것
+
+-- grant connect, resource to [사용자 계정];
+
+-- 실습) connect, resource권한을 주고 테이블을 하나 생성하라
