@@ -130,5 +130,15 @@ INSERT INTO 성적표(학생id, 과목) VALUES ( 'SMHRD6' , 'PYTHON') ;
 select * from 성적표;
 
 -- SMHRD6인 학생의 JAVA과목의 성적을 50점으로 수정하시오.(update)
-update 성적표 set 성적 = 50 where 과목 = 'JAVA';
+update 성적표 set 성적 = 50 where 학생ID = 'SMHRD6' and 과목 = 'JAVA';
 
+commit; -- 영구 저장하는 명령문
+
+select * from 수강생정보;
+
+-- 수강생정보테이블에서 조준용이라는 학생이름을 CJY , 소속반은 B로 변경(update)
+update 수강생정보 set 학생이름 = 'CJY', 소속반 = 'B' where 학생ID = 'SMHRD1';
+
+-- DML로 데이터 조작시 조건절에는 pk에 해당하는 컬럼을 조건절에 작성하는것이 적합하다.
+
+rollback; -- 트랜잭션을 되돌리는 명령어
