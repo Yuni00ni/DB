@@ -123,18 +123,28 @@ select d.department_id, d.department_name, d.manager_id, e.first_name from depar
 --> 한쪽 테이블의 null값도 출력하고 싶을 때 사용한다
 
 -- left outer join : 왼쪽 테이블을 기준으로 null값도 포함하여 출력
+-- 오라클 문법 조인시 : 조인 조건절에 반대인 오른쪽 컬럼에 (+)
 select d.department_id, d.department_name, d.manager_id, e.first_name from departments d left outer join employees e on d.manager_id = e.employee_id order by department_id;
+
 -- right outer join : 오른쪽 테이블을 기준으로 null값도 포함하여 출력
+-- 오라클 문법 조인시 : 조인 조건절 반대인 왼쪽 컬럼에 (+)
 select d.department_id, d.department_name, d.manager_id, e.first_name from departments d right outer join employees e on d.manager_id = e.employee_id order by department_id;
+
 -- full outer join : 양쪽의 null값도 포함하여 출력
+-- 오라클 문법에서는 지원하지 않음
 select d.department_id, d.department_name, d.manager_id, e.first_name from departments d full outer join employees e on d.manager_id = e.employee_id order by department_id;
 
 -- left outer join 사용방법
 select d.department_id, d.department_name, d.manager_id, e.first_name from departments d left outer join employees e on d.manager_id = e.employee_id order by department_id;
 
+-- 오라클 문법으로 left outer join 사용
+select d.department_id, d.department_name, d.manager_id, e.first_name from departments d, employees e where d.manager_id = e.employee_id(+) order by department_id;
+
 -- right outer join 사용방법
 select d.department_id, d.department_name, d.manager_id, e.first_name from departments d right outer join employees e on d.manager_id = e.employee_id order by department_id;
 
+-- 오라클 문법으로 right outer join 사용
+select d.department_id, d.department_name, d.manager_id, e.first_name from departments d, employees e where d.manager_id(+) = e.employee_id order by department_id;
+
 -- full outer join 사용방법
 select d.department_id, d.department_name, d.manager_id, e.first_name from departments d full outer join employees e on d.manager_id = e.employee_id order by department_id;
-
