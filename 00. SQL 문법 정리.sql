@@ -142,3 +142,43 @@ update 수강생정보 set 학생이름 = 'CJY', 소속반 = 'B' where 학생ID 
 -- DML로 데이터 조작시 조건절에는 pk에 해당하는 컬럼을 조건절에 작성하는것이 적합하다.
 
 rollback; -- 트랜잭션을 되돌리는 명령어
+
+-- delete : 데이터를 삭제할 때 사용하는 명령어
+-- 사용방법
+-- delete from [테이블명]
+-- where [삭제할 대상 행을 선별하기 위한 조건식];
+
+select * from 수강생정보;
+
+delete from 수강생정보 where 학생ID = 'SMHRD1';
+
+commit;
+
+-- TCL(Transaction Control Language) : 트랜잭션 제어어
+-- 트랜잭션이란?
+--> 데이터베이스의 상태를 변화시키기 위해서 수행하는 최소 수행단위이다.
+--> 업무를 처리하기 위한 최소 수행 단위를 뜻한다.
+
+-- [ TCL의 명령어 ]
+-- commit : 데이터베이스에 영구적으로 저장, commit시점 이후에 트랜잭션 결과를 저장
+-- rollback : 트랜잭션을 취소, 마지막 commit시점까지만 복구가 가능
+-- savepoint : 하나의 트랜잭션을 작게 분할하여 저장하는 기능
+
+
+-- DCL(Data Control Language) : 데이터 제어어
+-- 데이터 제어어로서 데이터베이스에 접근하거나 객체에 권한을 주는 등의 역할을 하는 언어
+
+-- [ DCL의 명령어 ]
+-- grant : 권한을 부여
+-- revote : 권한을 회수
+-- role : 권한을 묶어서 부여(다중 선택 부여)
+
+-- 사용자(user)를 계정이라고 함
+
+-- 계정을 만들어보자.
+-- 사용자(계정)를 생성하는 방법
+
+-- create user [계정 이름(user name)]
+-- identified by [비밀번호 설정]
+
+-- system(최고관리자 계정)에 접속된 상태에서 계정을 만든다!
